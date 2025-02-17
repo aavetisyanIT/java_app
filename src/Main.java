@@ -1,7 +1,12 @@
 public class Main {
     public static void main(String[] args) {
         int firstValue = 2;
-        firstValue += 1;
-        System.out.println(firstValue);
+        float secondValue = 2;
+
+        int result;
+
+        result = (int) (firstValue + secondValue);
+
+        System.out.println(result);
     }
 }
