@@ -7,25 +7,31 @@ public class Main {
         double[] resultArr = new double[operatorArr.length];
 
         for (int i = 0; i < operatorArr.length; i++) {
-            switch (operatorArr[i]) {
-                case 'a':
-                    resultArr[i] = left[i] + right[i];
-                    break;
-                case 's':
-                    resultArr[i] = left[i] - right[i];
-                    break;
-                case 'd':
-                    resultArr[i] = right[i] != 0 ? left[i] / right[i] : 0.0d;
-                    break;
-                case 'm':
-                    resultArr[i] = left[i] * right[i];
-                    break;
-                default:
-                    System.out.println("Wrong Operator!");
-            }
+            resultArr[i] = execute(operatorArr[i], left[i], right[i]);
         }
 
         for (double result : resultArr)
             System.out.println(result);
+    }
+
+    static double execute(char opCode, double left, double right) {
+        double result = 0;
+        switch (opCode) {
+            case 'a':
+                result = left + right;
+                break;
+            case 's':
+                result = left - right;
+                break;
+            case 'd':
+                result = right != 0 ? left / right : 0.0d;
+                break;
+            case 'm':
+                result = left * right;
+                break;
+            default:
+                System.out.println("Wrong Operator!");
+        }
+        return result;
     }
 }
