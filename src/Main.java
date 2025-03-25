@@ -12,9 +12,10 @@ public class Main {
             for (int i = 0; i < operatorArr.length; i++) {
                 resultArr[i] = execute(operatorArr[i], left[i], right[i]);
             }
-
             for (double result : resultArr)
                 System.out.println(result);
+        } else if (args.length == 1 && args[0].equals("interactive")) {
+            handleUserInputs();
         } else if (args.length == 3) {
             handleCommandLineArgs(args);
         } else {
@@ -27,7 +28,7 @@ public class Main {
         System.out.println("Enter operation and two numbers");
         Scanner scanner = new Scanner(System.in);
         String inputStr = scanner.nextLine();
-        String[] inputArr = inputStr.split("");
+        String[] inputArr = inputStr.split(" ");
         performOperation(inputArr);
     }
 
@@ -35,7 +36,8 @@ public class Main {
         char opCode = opCodeFromString(inputArr[0]);
         double valueOne = valueFromWord(inputArr[1]);
         double valueTwo = valueFromWord(inputArr[2]);
-        execute(opCode, valueOne, valueTwo);
+        double result = execute(opCode, valueOne, valueTwo);
+        System.out.println("Result is " + result);
     }
 
     static void handleCommandLineArgs(String[] args) {
