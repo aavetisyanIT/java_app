@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         double[] left = {100.0d, 20.3d, 50.0d, 9.0d};
@@ -19,6 +21,21 @@ public class Main {
             System.out.println("Please, provide 3 arguments");
         }
 
+    }
+
+    static void handleUserInputs() {
+        System.out.println("Enter operation and two numbers");
+        Scanner scanner = new Scanner(System.in);
+        String inputStr = scanner.nextLine();
+        String[] inputArr = inputStr.split("");
+        performOperation(inputArr);
+    }
+
+    private static void performOperation(String[] inputArr) {
+        char opCode = opCodeFromString(inputArr[0]);
+        double valueOne = valueFromWord(inputArr[1]);
+        double valueTwo = valueFromWord(inputArr[2]);
+        execute(opCode, valueOne, valueTwo);
     }
 
     static void handleCommandLineArgs(String[] args) {
@@ -46,6 +63,24 @@ public class Main {
                 break;
             default:
                 System.out.println("Wrong Operator!");
+        }
+        return result;
+    }
+
+    static char opCodeFromString(String input) {
+        return input.charAt(0);
+    }
+
+    static double valueFromWord(String inputWord) {
+        String[] wordsArray = {
+                "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+        };
+        double result = 0d;
+        for (int i = 0; i < wordsArray.length; i++) {
+            if (inputWord.equals(wordsArray[i])) {
+                result = i;
+                break;
+            }
         }
         return result;
     }
