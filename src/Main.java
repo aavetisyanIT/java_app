@@ -32,12 +32,39 @@ public class Main {
         performOperation(inputArr);
     }
 
+    static char symbolFromOpCode(char opCode) {
+        char[] opCodesArr = {'a', 's', 'm', 'd'};
+        char[] symbolsArr = {'+', '-', '*', '/'};
+        char result = ' ';
+        for (int i = 0; i < opCodesArr.length; i++) {
+            if (opCode == opCodesArr[i]) {
+                result = symbolsArr[i];
+                break;
+            }
+        }
+        return result;
+    }
+
     private static void performOperation(String[] inputArr) {
         char opCode = opCodeFromString(inputArr[0]);
         double valueOne = valueFromWord(inputArr[1]);
         double valueTwo = valueFromWord(inputArr[2]);
         double result = execute(opCode, valueOne, valueTwo);
-        System.out.println("Result is " + result);
+        displayResult(opCode, valueOne, valueTwo, result);
+    }
+
+    private static void displayResult(char opCode, double valueOne, double valueTwo, double result) {
+        char symbol = symbolFromOpCode(opCode);
+        StringBuffer outputBuffer = new StringBuffer(20);
+        outputBuffer.append(valueOne);
+        outputBuffer.append(' ');
+        outputBuffer.append(symbol);
+        outputBuffer.append(' ');
+        outputBuffer.append(valueTwo);
+        outputBuffer.append(" = ");
+        outputBuffer.append(result);
+        String output = outputBuffer.toString();
+        System.out.println(output);
     }
 
     static void handleCommandLineArgs(String[] args) {
